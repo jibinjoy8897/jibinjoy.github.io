@@ -6,204 +6,284 @@
   <title>Jibin Joy | Full Stack Software Engineer</title>
   <style>
     :root {
-      --bg: #0b1120;
-      --surface: #1e293b;
-      --text: #f8fafc;
+      --bg: #070b14;
+      --surface: rgba(17, 25, 40, 0.75);
+      --surface-solid: #111928;
+      --border: rgba(255, 255, 255, 0.1);
+      --text: #f1f5f9;
       --muted: #94a3b8;
       --accent: #38bdf8;
-      --border: #334155;
+      --accent-2: #818cf8;
+      --glow: rgba(56, 189, 248, 0.15);
     }
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background: var(--bg);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: var(--bg);
+      background-image: 
+        radial-gradient(circle at 15% 15%, rgba(56, 189, 248, 0.08), transparent 35%),
+        radial-gradient(circle at 85% 30%, rgba(129, 140, 248, 0.08), transparent 35%);
       color: var(--text);
       line-height: 1.6;
-      padding: 2rem 1.25rem;
+      overflow-x: hidden;
     }
-    .container { max-width: 920px; margin: 0 auto; }
-    header { padding: 2.5rem 0 2rem; border-bottom: 1px solid var(--border); }
-    .badge {
-      display: inline-block;
-      background: rgba(56, 189, 248, 0.15);
-      color: var(--accent);
-      font-size: 0.85rem;
-      font-weight: 600;
-      padding: 0.25rem 0.75rem;
+
+    /* Sticky Glass Navbar */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      background: rgba(7, 11, 20, 0.8);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: 1050px;
+      margin: 0 auto;
+      padding: 0.9rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo { font-weight: 700; font-size: 1.1rem; letter-spacing: -0.02em; }
+    .logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 1.5rem; }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    .container { max-width: 1050px; margin: 0 auto; padding: 0 1.5rem; }
+
+    /* Hero Section */
+    .hero {
+      padding: 5rem 0 4rem;
+      display: grid;
+      grid-template-columns: 1.3fr 0.7fr;
+      gap: 2.5rem;
+      align-items: center;
+    }
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      color: #34d399;
+      padding: 0.3rem 0.85rem;
       border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin-bottom: 1.25rem;
+    }
+    .pulse {
+      width: 8px; height: 8px;
+      background: #10b981;
+      border-radius: 50%;
+      box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+      70% { box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+    }
+    h1 {
+      font-size: clamp(2.2rem, 4vw, 3.25rem);
+      line-height: 1.15;
+      letter-spacing: -0.03em;
       margin-bottom: 0.75rem;
     }
-    h1 { font-size: 2.5rem; letter-spacing: -0.02em; margin-bottom: 0.4rem; }
-    .subtitle { font-size: 1.2rem; color: var(--muted); margin-bottom: 1.25rem; }
-    .bio { color: #cbd5e1; max-width: 700px; margin-bottom: 1.5rem; }
-    .cta-group { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+    .gradient-text {
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero p { color: var(--muted); font-size: 1.08rem; max-width: 600px; margin-bottom: 1.75rem; }
+    .cta-row { display: flex; flex-wrap: wrap; gap: 0.85rem; }
     .btn {
-      text-decoration: none;
-      padding: 0.6rem 1.15rem;
-      border-radius: 6px;
+      padding: 0.65rem 1.25rem;
+      border-radius: 8px;
       font-size: 0.92rem;
-      font-weight: 500;
-      border: 1px solid var(--border);
-      color: var(--text);
-      transition: all 0.2s;
-    }
-    .btn-primary {
-      background: var(--accent);
-      color: #0b1120;
-      border-color: var(--accent);
       font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      transition: transform 0.15s, border-color 0.2s, box-shadow 0.2s;
     }
-    .btn:hover { border-color: var(--accent); color: var(--accent); }
-    .btn-primary:hover { background: #7dd3fc; color: #0b1120; }
-    section { padding: 2.25rem 0; border-bottom: 1px solid var(--border); }
-    h2 { font-size: 1.4rem; margin-bottom: 1.25rem; }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-      gap: 1.25rem;
+    .btn:hover { transform: translateY(-2px); border-color: var(--accent); }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), #0284c7);
+      color: #04101e;
+      border: none;
     }
-    .card {
+    .btn-primary:hover { box-shadow: 0 8px 25px rgba(56, 189, 248, 0.3); }
+
+    /* Interactive Terminal Card in Hero */
+    .terminal {
+      background: #0d1322;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem;
+      font-family: "Fira Code", ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 0.84rem;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    }
+    .terminal-bar { display: flex; gap: 6px; margin-bottom: 1rem; }
+    .dot { width: 10px; height: 10px; border-radius: 50%; }
+    .red { background: #ef4444; } .yellow { background: #f59e0b; } .green { background: #10b981; }
+    .code-line { margin-bottom: 0.4rem; color: #cbd5e1; }
+    .kw { color: #c084fc; } .str { color: #34d399; } .prop { color: #38bdf8; }
+
+    /* Sections */
+    section { padding: 3.5rem 0; border-top: 1px solid var(--border); }
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    h2 { font-size: 1.65rem; letter-spacing: -0.02em; }
+    .section-sub { color: var(--muted); font-size: 0.95rem; }
+
+    /* Filter Pills */
+    .filters { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .filter-btn {
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 1.4rem;
+      color: var(--muted);
+      padding: 0.4rem 0.9rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .filter-btn.active, .filter-btn:hover {
+      background: rgba(56, 189, 248, 0.15);
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    /* Project Cards with Spotlight Hover */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.4rem;
+    }
+    .card {
+      position: relative;
+      background: var(--surface);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.5rem;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      transition: transform 0.2s, border-color 0.2s;
     }
-    .card h3 { font-size: 1.12rem; margin-bottom: 0.5rem; }
-    .card p { color: var(--muted); font-size: 0.92rem; margin-bottom: 1rem; }
-    .tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.2rem; }
+    .card:hover { transform: translateY(-4px); border-color: rgba(56, 189, 248, 0.45); }
+    .card.hidden { display: none; }
+    .card-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; }
+    .card-type { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--accent); font-weight: 700; }
+    .card h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
+    .card p { color: var(--muted); font-size: 0.92rem; margin-bottom: 1.1rem; }
+    .tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.25rem; }
     .tag {
-      background: rgba(56, 189, 248, 0.12);
-      color: var(--accent);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border);
+      color: #cbd5e1;
       font-size: 0.75rem;
       padding: 0.2rem 0.55rem;
-      border-radius: 4px;
-      font-weight: 500;
+      border-radius: 5px;
     }
-    .card-links a {
-      color: var(--accent);
-      text-decoration: none;
-      font-size: 0.9rem;
-      margin-right: 1rem;
-      font-weight: 500;
+    .card-actions { display: flex; gap: 0.85rem; align-items: center; flex-wrap: wrap; }
+    .link-btn {
+      background: none; border: none; color: var(--accent);
+      font-size: 0.88rem; font-weight: 600; cursor: pointer; text-decoration: none; padding: 0;
     }
-    .card-links a:hover { text-decoration: underline; }
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1rem;
+    .link-btn:hover { text-decoration: underline; }
+
+    /* Live GitHub Repo Feed */
+    .repo-meta { display: flex; gap: 1rem; font-size: 0.8rem; color: var(--muted); margin-top: 0.75rem; }
+
+    /* Modal */
+    .modal-backdrop {
+      position: fixed; inset: 0; background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(6px);
+      display: none; align-items: center; justify-content: center;
+      padding: 1.5rem; z-index: 100;
     }
-    .skill-box {
-      background: var(--surface);
+    .modal-backdrop.open { display: flex; }
+    .modal {
+      background: var(--surface-solid);
       border: 1px solid var(--border);
-      padding: 1rem;
-      border-radius: 8px;
+      border-radius: 16px;
+      max-width: 620px; width: 100%;
+      padding: 2rem;
+      position: relative;
+      animation: pop 0.2s ease-out;
     }
-    .skill-box h4 { color: var(--accent); font-size: 0.9rem; margin-bottom: 0.4rem; }
-    .skill-box p { color: var(--muted); font-size: 0.88rem; }
-    footer { padding-top: 1.75rem; color: var(--muted); font-size: 0.85rem; text-align: center; }
+    @keyframes pop { from { transform: scale(0.95); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+    .close-modal {
+      position: absolute; top: 1.25rem; right: 1.25rem;
+      background: none; border: none; color: var(--muted); font-size: 1.5rem; cursor: pointer;
+    }
+    .modal h3 { font-size: 1.4rem; margin-bottom: 0.5rem; }
+    .modal-section { margin-top: 1.25rem; }
+    .modal-section h4 { color: var(--accent); font-size: 0.88rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.35rem; }
+    .modal-section p, .modal-section li { color: #cbd5e1; font-size: 0.94rem; }
+    .modal-section ul { padding-left: 1.2rem; }
+
+    footer {
+      text-align: center; padding: 2.5rem 0; color: var(--muted);
+      font-size: 0.88rem; border-top: 1px solid var(--border);
+    }
+
+    @media (max-width: 820px) {
+      .hero { grid-template-columns: 1fr; padding: 3rem 0 2.5rem; }
+    }
   </style>
 </head>
 <body>
+
+  <nav>
+    <div class="nav-inner">
+      <div class="logo">Jibin<span>.dev</span></div>
+      <div class="nav-links">
+        <a href="#projects">Projects</a>
+        <a href="#github-live">Live GitHub</a>
+        <a href="#stack">Tech Stack</a>
+      </div>
+    </div>
+  </nav>
+
   <div class="container">
-    <header>
-      <div class="badge">Available for Full Stack & Backend Roles • Greater Vancouver, BC</div>
-      <h1>Jibin Joy</h1>
-      <div class="subtitle">Full Stack Software Engineer • 4+ Years of Experience</div>
-      <p class="bio">
-        Software engineer specializing in designing scalable backend APIs, microservices, and responsive web applications.
-        Experienced in end-to-end product delivery using Java, Spring Boot, React, and modern cloud/database technologies.
-      </p>
-      <div class="cta-group">
-        <a class="btn btn-primary" href="https://github.com[YOUR-USERNAME]" target="_blank">GitHub Profile</a>
-        <a class="btn" href="https://linkedin.com[YOUR-LINKEDIN]" target="_blank">LinkedIn</a>
-        <a class="btn" href="mailto:[YOUR-EMAIL]">Contact Me</a>
-      </div>
-    </header>
-
-    <section>
-      <h2>Featured Projects</h2>
-      <div class="grid">
-        <article class="card">
-          <div>
-            <h3>[Project 1: Full Stack Enterprise App]</h3>
-            <p>Engineered a full stack web platform with JWT role-based authentication, RESTful APIs, and optimized relational data persistence.</p>
-            <div class="tags">
-              <span class="tag">Java</span>
-              <span class="tag">Spring Boot</span>
-              <span class="tag">React</span>
-              <span class="tag">PostgreSQL</span>
-            </div>
-          </div>
-          <div class="card-links">
-            <a href="[LIVE-DEMO-URL-1]" target="_blank">Live Demo →</a>
-            <a href="https://github.com[YOUR-USERNAME]/[REPO-1]" target="_blank">Source Code</a>
-          </div>
-        </article>
-
-        <article class="card">
-          <div>
-            <h3>[Project 2: Microservice & API Platform]</h3>
-            <p>Built containerized backend services with automated CI/CD pipelines, database indexing, and a real-time analytics frontend.</p>
-            <div class="tags">
-              <span class="tag">Spring Boot</span>
-              <span class="tag">Docker</span>
-              <span class="tag">MongoDB</span>
-              <span class="tag">TypeScript</span>
-            </div>
-          </div>
-          <div class="card-links">
-            <a href="[LIVE-DEMO-URL-2]" target="_blank">Live Demo →</a>
-            <a href="https://github.com[YOUR-USERNAME]/[REPO-2]" target="_blank">Source Code</a>
-          </div>
-        </article>
-
-        <article class="card">
-          <div>
-            <h3>[Project 3: Digital Web Solution]</h3>
-            <p>Developed a responsive, accessible web application integrating third-party REST APIs and automated end-to-end testing.</p>
-            <div class="tags">
-              <span class="tag">React</span>
-              <span class="tag">JavaScript</span>
-              <span class="tag">HTML5/CSS3</span>
-              <span class="tag">Vercel</span>
-            </div>
-          </div>
-          <div class="card-links">
-            <a href="[LIVE-DEMO-URL-3]" target="_blank">Live Demo →</a>
-            <a href="https://github.com[YOUR-USERNAME]/[REPO-3]" target="_blank">Source Code</a>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section>
-      <h2>Technical Stack</h2>
-      <div class="skills-grid">
-        <div class="skill-box">
-          <h4>Backend</h4>
-          <p>Java, Spring Boot, Hibernate/JPA, Node.js, REST APIs, Microservices</p>
-        </div>
-        <div class="skill-box">
-          <h4>Frontend</h4>
-          <p>React, TypeScript, JavaScript (ES6+), HTML5, CSS3, Responsive Design</p>
-        </div>
-        <div class="skill-box">
-          <h4>Databases</h4>
-          <p>PostgreSQL, MySQL, MongoDB, SQL Query Optimization</p>
-        </div>
-        <div class="skill-box">
-          <h4>DevOps & Tools</h4>
-          <p>Docker, Kubernetes, Git, GitHub Actions, Vercel, JUnit</p>
+    <!-- Hero -->
+    <div class="hero">
+      <div>
+        <div class="status-pill"><span class="pulse"></span> Open to Full Stack & Backend Roles • Vancouver, BC</div>
+        <h1>Building <span class="gradient-text">Scalable Systems</span> & Intuitive Web Apps.</h1>
+        <p>
+          Full Stack Software Engineer with 4+ years of experience designing resilient Java/Spring Boot microservices,
+          REST APIs, and responsive React frontends from database to cloud deployment.
+        </p>
+        <div class="cta-row">
+          <a href="#projects" class="btn btn-primary">Explore Case Studies</a>
+          <a href="https://github.com" target="_blank" class="btn">GitHub Profile ↗</a>
+          <a href="https://linkedin.com" target="_blank" class="btn">LinkedIn ↗</a>
         </div>
       </div>
-    </section>
 
-    <footer>
-      © 2026 Jibin Joy • Hosted on GitHub Pages
-    </footer>
-  </div>
-</body>
-</html>
+      <div class="terminal">
